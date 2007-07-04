@@ -22,7 +22,7 @@
 
   You should have received a copy of the GNU General Public License along
   with this program; if not, write to the Free Software Foundation, Inc.,
-  59 Temple Place, Suite 330, Boston, MA 02111-1307, USA.
+  51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA.
 
 */
 
@@ -33,7 +33,15 @@
 #include <stdio.h>
 #include "dynstr.h"
 #include "edlib.h"
+#define EXTERN /* force a declaration */
 #include "msgs.h"
+#ifdef USE_CATGETS
+#include "nl_types.h"
+#endif
+#ifdef USE_KITTEN
+#include "kitten.h"
+#endif
+
 
 /* typedefs */
 #ifndef MIN
@@ -259,8 +267,14 @@ main (int argc, char **argv)
 {
   char *s;
 
+#if defined(USE_CATGETS) || defined(USE_KITTEN)
+  /* get catalog */
+  the_cat = catopen("edlin", 0);
+#endif
+
   /* put out the copyright notice and disclaimer */
-  puts (PACKAGE_NAME " " PACKAGE_VERSION G00024);
+  fputs (PACKAGE_NAME " " PACKAGE_VERSION, stdout);
+  puts (G00024);
   puts (G00025);
   puts (G00026);
   puts (G00027);
@@ -275,6 +289,10 @@ main (int argc, char **argv)
       parse_command (s);
     }
   destroy_buffer ();
+#if defined(USE_CATGETS) || defined(USE_KITTEN)
+  /* close catalog */
+  catclose(the_cat);
+#endif
   return 0;
 }
 

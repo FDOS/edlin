@@ -23,7 +23,7 @@
 
   You should have received a copy of the GNU General Public License along
   with this program; if not, write to the Free Software Foundation, Inc.,
-  59 Temple Place, Suite 330, Boston, MA 02111-1307, USA.
+  51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA.
 */
 
 /* includes */
@@ -76,9 +76,6 @@
 /* static variables */
 
 DAS_ARRAY_T *buffer = 0;
-char edit_prompt[] = G00001;
-char ok_prompt[] = G00002;
-char entry_error[] = G00003;
 
 /* functions */
 
@@ -241,7 +238,7 @@ transfer_file (unsigned long line, char *filename)
 
   if (line > DAS_length (buffer))
     {
-      puts (entry_error);
+      puts (G00003);
       return;
     }
   if ((f = fopen (filename, "r")))
@@ -283,7 +280,7 @@ write_file (unsigned long lines, char *filename)
           fputc ('\n', f);
         }
       fclose (f);
-      printf ((i == 1) ? G00006 : G00007, filename, i);
+      printf ((i == 1) ? G00006 : G00007, filename, (unsigned long) i);
     }
 }
 
@@ -297,7 +294,7 @@ copy_block (unsigned long line1, unsigned long line2,
 
   if (line1 >= numlines || line2 >= numlines || line3 > numlines ||
       (line1 < line3 && line3 <= line2))
-    puts (entry_error);
+    puts (G00003);
   else
     {
       DAS_subarray (buffer, s, line1, line2 - line1 + 1);
@@ -317,7 +314,7 @@ delete_block (unsigned long line1, unsigned long line2)
   if (line2 > numlines)
     line2 = numlines - 1;
   if (line1 > line2)
-    puts (entry_error);
+    puts (G00003);
   else
     DAS_remove (buffer, line1, line2 - line1 + 1);
 }
@@ -331,7 +328,7 @@ move_block (unsigned long line1, unsigned long line2, unsigned long line3)
 
   if (line1 >= numlines || line2 >= numlines || line3 > numlines
       || (line1 < line3 && line3 <= line2))
-    puts (entry_error);
+    puts (G00003);
   else
     {
       numlines = line2 - line1 + 1;
@@ -532,7 +529,7 @@ modify_line (unsigned long line)
   STRING_T *xline;
   if (line > DAS_length (buffer))
     {
-      puts (entry_error);
+      puts (G00003);
       return;
     }
   display_block (line, line, line, 1);
@@ -550,12 +547,14 @@ insert_block (unsigned long line)
   STRING_T *xline;
   if (line > DAS_length (buffer))
     {
-      puts (entry_error);
+      puts (G00003);
       return 0;
     }
-  while (strcmp ((new_line = read_line (edit_prompt)), ".") != 0)
+  while (strcmp ((new_line = read_line (G00001)), ".") != 0) 
     {
       xline = translate_string (new_line, 0);
+      if (DSlength(xline) > 0 && DSget_at(xline, 0) == '\032')
+        break;
       DAS_insert (buffer, line++, xline, 1, 1);
     }
   return line + 1 < DAS_length (buffer) ? line + 1 : DAS_length (buffer);
@@ -571,9 +570,10 @@ search_buffer (unsigned long current_line,
   int q = 0;
   char *yn;
   size_t numlines = DAS_length (buffer);
+
   if (line1 > numlines || line2 > numlines)
     {
-      puts (entry_error);
+      puts (G00003);
       return current_line;
     }
   while (isspace ((unsigned char) *s))
@@ -590,7 +590,7 @@ search_buffer (unsigned long current_line,
             display_block (line, line, line, 1);
             if (verify)
               {
-                yn = read_line (ok_prompt);
+                yn = read_line (G00002);
                 if (*yn == 0 || strchr (YES, *yn) != 0)
                   return line + 1;
               }
@@ -602,7 +602,8 @@ search_buffer (unsigned long current_line,
   return current_line;
 }
 
-/* search_buffer - search a buffer for a string */
+/* replace_buffer - search the buffer for a string, then replace it with
+   another string. */
 unsigned long
 replace_buffer (unsigned long current_line,
                 unsigned long line1, unsigned long line2, int verify, char *s)
@@ -612,6 +613,7 @@ replace_buffer (unsigned long current_line,
   int q = 0;
   char *yn;
   size_t origpos;
+
   while (isspace ((unsigned char) *s))
     s++;
   if (*s == '\'' || *s == '\"')
@@ -647,7 +649,7 @@ replace_buffer (unsigned long current_line,
             DSreplace (dc, origpos, DSlength (ds), ds1, 0, NPOS);
             printf (G00012, line + 1, DScstr (dc));
             if (verify)
-              yn = read_line (ok_prompt);
+              yn = read_line (G00002);
             if (!verify || (*yn == 0 || strchr (YES, *yn) != 0))
               {
                 current_line = line + 1;

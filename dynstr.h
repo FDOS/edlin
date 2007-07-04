@@ -23,7 +23,7 @@
 
   You should have received a copy of the GNU General Public License along
   with this program; if not, write to the Free Software Foundation, Inc.,
-  59 Temple Place, Suite 330, Boston, MA 02111-1307, USA.
+  51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA.
 */
 
 #ifndef DYNSTR_H
@@ -41,8 +41,11 @@ typedef struct STRING_T
 
 void DSctor (STRING_T * this);
 void DSctor_with_size (STRING_T * this, size_t n, capacity c);
+void DScopy_ctor (STRING_T *this, STRING_T *x);
 void DSdtor (STRING_T * this);
 STRING_T *DScreate (void);
+STRING_T *DScreate_with_size (size_t n, capacity c);
+STRING_T *DScreate_copy (STRING_T *x);
 void DSdestroy (STRING_T * this);
 STRING_T *DSappendchar (STRING_T * this, int c, size_t nr);
 STRING_T *DSappendcstr (STRING_T * this, char *s, size_t ns);

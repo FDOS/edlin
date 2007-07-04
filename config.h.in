@@ -15,6 +15,12 @@
 /* Define to 1 if you have the <jctype.h> header file. */
 #undef HAVE_JCTYPE_H
 
+/* Define to 1 if you have the `e' library (-le). */
+#undef HAVE_LIBE
+
+/* Define to 1 if you have the `inks' library (-links). */
+#undef HAVE_LIBINKS
+
 /* Define to 1 if you have the <limits.h> header file. */
 #undef HAVE_LIMITS_H
 
@@ -43,9 +49,6 @@
 
 /* Define to 1 if you have the `rename' function. */
 #undef HAVE_RENAME
-
-/* Define to 1 if you have the <stddef.h> header file. */
-#undef HAVE_STDDEF_H
 
 /* Define to 1 if you have the <stdint.h> header file. */
 #undef HAVE_STDINT_H
@@ -107,5 +110,5 @@
 /* Define to rpl_realloc if the replacement function should be used. */
 #undef realloc
 
-/* Define to `unsigned' if <sys/types.h> does not define. */
+/* Define to `unsigned int' if <sys/types.h> does not define. */
 #undef size_t

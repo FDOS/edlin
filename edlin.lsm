@@ -1,0 +1,14 @@
+Begin3
+Title: edlin
+Version: 2.10c
+Entered-date: 2007-05-27
+Description: The edlin program is the FreeDOS standard line editor.
+Keywords: FreeDOS, line editor
+Author: gpietsch -at- comcast.net (Gregory Pietsch)
+Maintained-by: gpietsch -at- comcast.net (Gregory Pietsch)
+Primary-site: http://sourceforge.net/projects/freedos-edlin
+Alternate-site: http://www.ibiblio.org/pub/micro/pc-stuff/freedos/files/dos/edlin
+Original-site: none
+Platforms: Linux (gcc), DOS (Microsoft Visual C++ in C mode, Borland C++)
+Copying-policy: GPL
+End

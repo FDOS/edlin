@@ -23,7 +23,7 @@
 
   You should have received a copy of the GNU General Public License along
   with this program; if not, write to the Free Software Foundation, Inc.,
-  59 Temple Place, Suite 330, Boston, MA 02111-1307, USA.
+  51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA.
 */
 
 /* includes */
@@ -354,7 +354,7 @@ DSgrow (STRING_T * this, size_t n, int trim)
         this->ptr[this->len = 0] = '\0';
       return 0;
     }
-  else if (n == osize || n < osize && !trim)
+  else if (n == osize || (n < osize && !trim))
     return 1;
   else
     {
@@ -407,6 +407,14 @@ DSctor_with_size (STRING_T * this, size_t n, capacity c)
     DSassignchar (this, '\0', n);
 }
 
+/* DScopy_ctor: Construct a string that is a copy of another string.  */
+void
+DScopy_ctor (STRING_T * this, STRING_T * x)
+{
+  DStidy (this, 0);
+  DSassign (this, x, 0, NPOS);
+}
+
 /* DSdtor: Destroy a string. */
 void
 DSdtor (STRING_T * this)
@@ -424,6 +432,32 @@ DScreate (void)
   if (this == 0)
     Nomemory ();
   DSctor (this);
+  return this;
+}
+
+/* DScreate_copy: Allocate memory for a string, then call the copy constructor
+   (DSctor). */
+STRING_T *
+DScreate_copy (STRING_T *x)
+{
+  STRING_T *this = malloc (sizeof (STRING_T));
+
+  if (this == 0)
+    Nomemory ();
+  DScopy_ctor (this, x);
+  return this;
+}
+
+/* DScreate_with_size: Allocate memory for a string, then call the constructor
+   (DSctor_with_size). */
+STRING_T *
+DScreate_with_size (size_t n, capacity c)
+{
+  STRING_T *this = malloc (sizeof (STRING_T));
+
+  if (this == 0)
+    Nomemory ();
+  DSctor_with_size (this, n, c);
   return this;
 }
 
@@ -769,7 +803,7 @@ DSfind (STRING_T * this, char *s, size_t p0, size_t n)
   size_t nmax;
   char *t, *u;
 
-  if (n == 0 || n == NPOS && (n = strlen (s)) == 0)
+  if (n == 0 || (n == NPOS && (n = strlen (s)) == 0))
     return 0;
   if (p0 < this->len && n <= (nmax = this->len - p0))
     {
@@ -788,14 +822,18 @@ DSrfind (STRING_T * this, char *s, size_t p0, size_t n)
 {
   char *t;
 
-  if (n == 0 || n == NPOS && (n = strlen (s)) == 0)
+  if (n == 0 || (n == NPOS && (n = strlen (s)) == 0))
     return 0;
   if (n <= this->len)
-    for (t = this->ptr + (p0 < this->len - n ? p0 : this->len - n);; --t)
-      if (*t == *s && memcmp (t, s, n) == 0)
-        return t - this->ptr;
-      else if (t == this->ptr)
-        break;
+    {
+      for (t = this->ptr + (p0 < this->len - n ? p0 : this->len - n);; --t)
+        {
+          if (*t == *s && memcmp (t, s, n) == 0)
+            return t - this->ptr;
+          else if (t == this->ptr)
+            break;
+        }
+    }
   return NPOS;
 }
 
@@ -806,7 +844,7 @@ DSfind_first_of (STRING_T * this, char *s, size_t p0, size_t n)
 {
   char *t, *u;
 
-  if (n == 0 || n == NPOS && (n = strlen (s)) == 0)
+  if (n == 0 || (n == NPOS && (n = strlen (s)) == 0))
     return 0;
   if (p0 < this->len)
     {
@@ -825,14 +863,18 @@ DSfind_last_of (STRING_T * this, char *s, size_t p0, size_t n)
 {
   char *t;
 
-  if (n == 0 || n == NPOS && (n = strlen (s)) == 0)
+  if (n == 0 || (n == NPOS && (n = strlen (s)) == 0))
     return 0;
   if (0 < this->len)
-    for (t = this->ptr + (p0 < this->len ? p0 : this->len - 1);; t--)
-      if (memchr (s, *t, n) != 0)
-        return t - this->ptr;
-      else if (t == this->ptr)
-        break;
+    {
+      for (t = this->ptr + (p0 < this->len ? p0 : this->len - 1);; t--)
+        {
+          if (memchr (s, *t, n) != 0)
+            return t - this->ptr;
+          else if (t == this->ptr)
+            break;
+        }
+    }
   return NPOS;
 }
 
@@ -843,7 +885,7 @@ DSfind_first_not_of (STRING_T * this, char *s, size_t p0, size_t n)
 {
   char *t, *u;
 
-  if (n == 0 || n == NPOS && (n = strlen (s)) == 0)
+  if (n == 0 || (n == NPOS && (n = strlen (s)) == 0))
     return 0;
   if (p0 < this->len)
     {
@@ -863,14 +905,18 @@ DSfind_last_not_of (STRING_T * this, char *s, size_t p0, size_t n)
 {
   char *t;
 
-  if (n == 0 || n == NPOS && (n = strlen (s)) == 0)
+  if (n == 0 || (n == NPOS && (n = strlen (s)) == 0))
     return 0;
   if (0 < this->len)
-    for (t = this->ptr + (p0 < this->len ? p0 : this->len - 1);; t--)
-      if (memchr (s, *t, n) == 0)
-        return t - this->ptr;
-      else if (t == this->ptr)
-        break;
+    {
+      for (t = this->ptr + (p0 < this->len ? p0 : this->len - 1);; t--)
+        {
+          if (memchr (s, *t, n) == 0)
+            return t - this->ptr;
+          else if (t == this->ptr)
+            break;
+        }
+    }
   return NPOS;
 }
 

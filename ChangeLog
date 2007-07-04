@@ -1,3 +1,85 @@
+2007-06-02 Gregory Pietsch <gpietsch@comcast.net>
+	* Fixed spelling mistakes -- grrr!
+	* ow.bat - changed to reflect new version.
+	* config-h.ow and config-h.bc - regenerated.
+	* Version 2.10c released.
+
+2007-05-29 Gregory Pietsch <gpietsch@comcast.net>
+	* kitten/edlin.eo - New file - A translation of the message strings
+	  into Esperanto. Thanks, rugxulo!
+	* msgs-eo.h - New file - generated from kitten/edlin.eo.
+	* ow.bat - changed to reflect new directory.
+	* Version 2.10b released.
+
+2007-05-28 Gregory Pietsch <gpietsch@comcast.net>
+	* dynarray.h - debugged. Grrrr....
+	* ow.bat - Replaced with new version.
+	* Version 2.10a released.
+
+2007-05-26 Gregory Pietsch <gpietsch@comcast.net>
+	* kitten/edlin.la -- New file - A translation into Latin.
+	* msgs-la.h - New file - generated from kitten/edlin.la.
+	* dynstr.c dynstr.h - New create/destroy functions added.
+	* dynarray.h - Threw lots of #defines in there to placate
+	  the indent program.
+	* Version 2.10 released.
+
+2006-11-26 Gregory Pietsch <gpietsch@comcast.net>
+	* kit2msgs.c -- Added this little filter program.
+	* kitten/edlin.da kitten/edlin.de kitten/edlin.es
+	  kitten/edlin.eu kitten/edlin.fi kitten/edlin.fr
+	  kitten/edlin.is kitten/edlin.it kitten/edlin.ja
+	  kitten/edlin.nl kitten/edlin.no kitten/edlin.pt
+	  kitten/edlin.sv -- Replaced with versions from
+	  the NLS project.
+	* kitten/edlin.pl -- New file - A translation into
+	  Polish (from the NLS project).
+	* msgs-pl.h -- New file. Generated with kit2msgs
+	  from kitten/edlin.pl.
+	* msgs-da.h msgs-de.h msgs-es.h msgs-eu.h msgs-fi.h
+	  msgs-fr.h msgs-is.h msgs-it.h msgs-ja.h msgs-nl.h
+	  msgs-no.h msgs-pt.h msgs-sv.h -- Generated with
+	  kit2msgs from the respective kitten files.
+	* ow.bat -- New file from <rugxulo@gmail.com>. Intended as an
+	  aid to compiling under OpenWatcom.
+	* config-h.bc config-h.ow -- Regenerated.
+	* Version 2.9A released.
+
+2006-10-15 Gregory Pietsch <gpietsch@comcast.net>
+        * edlib.c (insert_block) -- Fixed bug discovered by 
+          Joris van Rantwijk.
+        * Version 2.9 released.
+
+2005-11-15 Gregory Pietsch <gpietsch@comcast.net>
+        * msgs-pt.h kitten/edlin.pt -- Portuguese translations corrected.
+          Thanks, Dutra de Lacerda <dulac@netcabo.pt>!
+
+2005-10-27 Gregory Pietsch <gpietsch@comcast.net>
+        * kitten.c kitten.h kitten/edlin.da kitten/edlin.de
+          kitten/edlin.en kitten/edlin.es kitten/edlin.eu
+          kitten/edlin.fi kitten/edlin.fr kitten/edlin.is 
+          kitten/edlin.it kitten/edlin.ja kitten/edlin.nl
+          kitten/edlin.no kitten/edlin.pt kitten/edlin.sv -- added.
+          catgets.c nl_types.h -- added.
+          msgscats.h -- added.
+          edlin.c -- Modified to add message catalog initialization.
+          All of this is to support message catalogs.  This whole bit
+          was inspired by Blair Campbell, who modified the 2.6 version
+          in his own way to add message catalogs.
+        * malloc.c realloc.c -- added. These are replacements for
+          similarly-named functions in the standard library from
+          the libit project.
+
+2005-07-20 Gregory Pietsch <gpietsch@comcast.net>
+        * Changed the address for the Free Software Foundation in the
+          source files.
+        * COPYING : Got latest version from Free Software Foundation.
+        * dynarray.h dynstr.c : Fixed so that the program compiles cleanly
+          with "gcc -Wall --pedantic". This involved adding a few 
+          parentheses and braces in a few places.
+        * TODO : This file was missing from 2.5. Re-adding it ... grrr!
+        * Version 2.6 released.
+
 2005-04-30 Gregory Pietsch <gpietsch@comcast.net>
         * dynarray.h : Added comments.
         * edlib.c : Added functions file_exists, make_bakfile.
