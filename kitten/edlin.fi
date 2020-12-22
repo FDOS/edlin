@@ -1,52 +1,58 @@
-# edlin.fi - messages file (Finnish version)
-# 
+# edlin.en - Finnish-language messages file
+#
 # Author: Gregory Pietsch
-# 
+#
 # DESCRIPTION:
-# 
+#
 # This file contains #defines for all the message strings in edlin.
 # For internationalization fun, just translate the messages in this
 # file.
-# 
-# 
- 
-1.0:Jj
-1.1: :  \b
-1.2:O.K.?  \b
-1.3:Kohta erehdys
-1.4:%s: %lu asettaa riviin kuulua\n
-1.5:%s: %lu piirteet toivoisin olevani kuulua\n
-1.6:%s: %lu asettaa riviin kirjallinen\n
-1.7:%s: %lu piirteet toivoisin olevani kirjallinen\n
+#
+# The strings were generated using ESR's cstrings program and moved
+# here.
+#
+# Language: Finnish (CP850)
+# Translated by Sampo Hippel„inen
+# Last update: 21 Dec 2020
+#
+
+1.0:Yy
+1.1:\040:\040
+1.2:O.K.?\040
+1.3:Sy”tevirhe
+1.4:%s: %lu rivi luettu\n
+1.5:%s: %lu rivi„ luettu\n
+1.6:%s: %lu rivi kirjoitettu\n
+1.7:%s: %lu rivi„ kirjoitettu\n
 1.8:%lu:%c%s\n
-1.9:Ahdistaa astua jotta jatkaa
-1.10:%lu:  \b
-1.11:Ei perustaa
+1.9:Paina <Enter> jatkaaksesi
+1.10:%lu:\040
+1.11:Ei l”ydy
 1.12:%lu: %s\n
-1.13:\nedlin has seuraava herruus:\n
-1.14:#                 editoida ainoa asettaa riviin    [#],[#],#m        ehdottaa blokki
-1.15:a                 liitt„„ kirjoitus                [#][,#]p          ilmaista hotellipoika
-1.16:[#],[#],#,[#]c    j„ljent„„ blokki                 q                 erota
-1.17:[#][,#]d          kirjain deletoida blokki         [#][,#][?]r$,$    asettaa takaisin kirjoitus
-1.18:e<>               kirjailla & erota                [#][,#][?]s$      etsi„ ajaksi kirjoitus
-1.19:[#]i              kirjain liite                    [#]t<>            kirjain kuljetus
-1.20:[#][,#]l          haluttaa                         [#]w<>            kirjailla\n
-1.21:johon $ edell„ on jono , <> on filename , # on joukko
-1.22:(joka toukokuu olla.current= asettaa riviin, $= kest„„
-1.23:asettaa riviin , eli jompikumpi joukko + eli - toinen joukko).\n
-1.24:, copyright (c) 2003 Gregory Pietsch
-1.25:Nyt kuluva ohjelmoida johtua avulla AIVAN NIIN EI TAKUU.
-1.26:Se on vapauttaa pehmo, ja te aari mieluinen jotta redistribute se ala --
-1.27:GNU Kaikinpuolinen Julkinen Anniskeluoikeudet jompikumpi 
-1.28:k„„nn”s 2 -lta anniskeluoikeudet, eli, aikaa sinun etuosto-oikeus,
-1.29:jokin my”hempi k„„nn”s.\n
-1.30:Rikkilta muisti.
-1.31:Jono hevosmitta erehdys.
-1.32:Jono asema erehdys.
-1.33:Invalidi k„ytt„j„ sy”tt„„, apu ? ajaksi auttaa.
-1.34:Ei filename
-1.35:Puskuroida kanssa aikamoinen.
-1.36:Invalidi puskuroida asema.
-1.37:EREHDYS: %s\n
+1.13:\nedlin sis„lt„„ seuraavat komennot:\n
+1.14:#                 muokkaa rivi„         [#],[#],#m        siirr„
+1.15:a                 lis„„ loppuun         [#][,#]p          sivu
+1.16:[#],[#],#,[#]c    kopioi                q                 lopeta (hylk„„)
+1.17:[#][,#]d          poista                [#][,#][?]r$,$    korvaa
+1.18:e<>               tallenna ja lopeta    [#][,#][?]s$      hae
+1.19:[#]i              sy”t„                 [#]t<>            yhdist„
+1.20:[#][,#]l          luettelo              [#]w<>            kirjoita\n
+1.21:miss„ $ on merkkijono, <> tiedostonimi,
+1.22:# on luku (tai .=nykyinen rivi, $=viimeinen rivi,
+1.23:tai jompikumpi + tai - toinen luku).\n
+1.24:, (c) 2003 Gregory Pietsch
+1.25:This program comes with ABSOLUTELY NO WARRANTY.
+1.26:It is free software, and you are welcome to redistribute it
+1.27:under the terms of the GNU General Public License -- either
+1.28:version 2 of the license, or, at your option, any later
+1.29:version.\n
+1.30:Muisti loppu
+1.31:Merkkijonopituus virheellinen
+1.32:Merkkijonopaikka virheellinen
+1.33:Sy”te virheellinen, ? avaa ohjeen.
+1.34:Ei tiedostonime„
+1.35:Puskuri liian iso
+1.36:Puskurin paikka virheellinen
+1.37:VIRHE: %s\n
 
 # END OF FILE
