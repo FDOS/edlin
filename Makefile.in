@@ -167,7 +167,7 @@ EXTRA_DIST = config-h.bc Makefile.bc edlin.htm edlin.tgt edlin.wpj \
 	     msgs-da.h msgs-de.h msgs-en.h msgs-eo.h msgs-es.h msgs-eu.h \
              msgs-fi.h msgs-fr.h msgs-is.h msgs-it.h msgs-la.h \
              msgs-nl.h msgs-no.h msgs-pl.h msgs-pt.h msgs-sv.h msgs-de2.h \
-             msgs-ja.h msgs-tr.h edlin-ja.htm edlin-ja.txt \
+             msgs-ja.h msgs-tr.h msgs-zh_hans.h edlin-ja.htm edlin-ja.txt \
              catgets.c kitten.c kitten.h nl_types.h \
              malloc.c realloc.c kitten msgscats.h config-h.ow \
              kit2msgs.c ow.bat
